@@ -11,6 +11,8 @@ from scripts import *
 import datetime
 import wikipedia
 import webbrowser
+import pyjokes
+
 r = sr.Recognizer()
 
 
@@ -18,9 +20,9 @@ def speak(data):
     engine = pyttsx3.init()
     engine.say(data)
     engine.runAndWait()
-# starting()
-# ask_name()
-# speak('How can i help you')
+starting()
+ask_name()
+speak('How can i help you')
 while 1:
     cmd = get_command() 
     cmd =  cmd.lower()
@@ -50,10 +52,28 @@ while 1:
             webbrowser.open('youtube.com')    
         elif 'google' in cmd:
             speak('opening google')
-            webbrowser.open('google.com')    
+            webbrowser.open('google.com')   
+        elif 'how are you' in cmd:
+            speak('I am fine sir,Thank you')
+            speak('how are you sir')
+        elif 'fine' in cmd or 'good' in cmd:
+            speak("Its good to know that your fine")    
         elif 'time' in cmd:
             strTime = datetime.datetime.now().strftime("%H:%M:%S") 
             speak(f'Time is {strTime}')
+        elif 'joke' in cmd:
+            speak('Searching for a joke')
+            speak('i get it')
+            speak(pyjokes.get_joke())
+            speak('hahahahahahah')
+        elif 'search' in cmd or 'play' in cmd:
+            cmd = cmd.replace('search','')
+            cmd = cmd.replace('play','')
+            webbrowser.open(cmd)
+        elif 'who created you' in cmd or 'who made you' in cmd:
+            speak('I have been created by legend Manav Dhiman')
+        elif 'who is manav dhiman' in cmd or 'manav' in cmd or 'dhiman' in cmd:
+            speak('he is a legend and most handsome man on this planet')
         elif 'stop' in cmd or 'exit' in cmd:
             speak('Good Bye sir')
             break
