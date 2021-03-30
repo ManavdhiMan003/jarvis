@@ -1,8 +1,10 @@
 import datetime
 import pyttsx3
 import speech_recognition as sr
-
+import smtplib
+import credential
 user_name = ""
+
 def speak(data):
     engine = pyttsx3.init()
     engine.say(data)
@@ -50,3 +52,10 @@ def get_command():
             print("unknown error occured")    
             return ''
 
+def send_email(to,message):
+    s = smtplib.SMTP('smtp.gmail.com', 587)
+    s.ehlo()
+    s.starttls()
+    s.login(credential.email,credential.password)
+    s.sendmail(credential.email,to,message)
+    s.quit()
