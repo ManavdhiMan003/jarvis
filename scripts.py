@@ -18,7 +18,7 @@ def starting():
         speak("Good Afternoon sir!")
     else:
         speak("Good Evening sir!")
-    speak("I am your assitant Jarvis")  
+    speak("I am your assistant Jarvis")  
 
 def ask_name():
     speak("What should i call you sir")
@@ -40,7 +40,7 @@ def get_command():
             print("Speak...")
             r.adjust_for_ambient_noise(source, duration=0.2)
             audio = r.listen(source)
-            text = r.recognize_google(audio)
+            text = r.recognize_google(audio,language='en-in')
             text = text.lower()
             print("Did you say: "+text)
             return text

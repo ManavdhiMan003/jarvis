@@ -15,19 +15,25 @@ def speak(data):
     engine = pyttsx3.init()
     engine.say(data)
     engine.runAndWait()
-starting()
+# starting()
+# ask_name()
+# speak('How can i help you')
 while 1:
-    with sr.Microphone() as source:
-        try:
-            print("Speak")
-            r.adjust_for_ambient_noise(source, duration=0.2)
-            audio = r.listen(source)
-            text = r.recognize_google(audio)
-            text = text.lower()
-            print("Did you say: "+text)
-            speak(text)
-        except sr.RequestError as e:
-            print("Could not request results; {0}".format(e))
-            
-        except sr.UnknownValueError:
-            print("unknown error occured")    
+    cmd = get_command() 
+    if cmd=='':
+        speak("sorry I didn't get it please repeat")
+    else:
+        if 'send a mail' in cmd or 'send email' in cmd:
+            try:
+                speak("what is the message sir?")
+                message = get_command()
+                speak("whome should i send")
+                to = input()
+                send_email(to,message)
+                speak("Email send successfully")
+            except Exception as e:
+                print(e)
+                speak("sorry sir i am unable to send email")
+        elif 'stop' in cmd or 'exit' in cmd:
+            speak('Good Bye sir')
+            break
