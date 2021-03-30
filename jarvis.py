@@ -69,6 +69,8 @@ while 1:
         elif 'search' in cmd or 'play' in cmd:
             cmd = cmd.replace('search','')
             cmd = cmd.replace('play','')
+            cmd = cmd.replace(' ','')
+            cmd = cmd+".com"
             webbrowser.open(cmd)
         elif 'who created you' in cmd or 'who made you' in cmd:
             speak('I have been created by legend Manav Dhiman')
